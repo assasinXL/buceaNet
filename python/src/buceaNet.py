@@ -181,7 +181,9 @@ def init_getip():
             print("ip:" + ip)
 
 def get_token():
-    print("获取token")
+    if DEBUG_MODE:
+        if SHOW_TOKEN:
+            print("获取token")
     global token
     get_challenge_params = {
         "callback": "jQuery112404953340710317169_" + str(int(time.time() * 1000)),
@@ -234,20 +236,63 @@ def login():
         if SHOW_SRUN_PORTAL_INFO:
             print(srun_portal_params)
             print(srun_portal_res.text)
-    if (re.search("login_ok", srun_portal_res.text)):
+    if (re.search("E0000", srun_portal_res.text)):
         print("登录成功")
+    if (re.search("E2531", srun_portal_res.text)):
+        print("用户不存在")
+    if (re.search("E2553", srun_portal_res.text)):
+        print("账号或密码错误")
     elif (re.search("ip_already_online_error", srun_portal_res.text)):
-        print("当前已经是在线状态，在线IP地址：{}".format(ip))
+        print("已经是在线状态，当前设备IP地址：{}".format(ip))
     else:
         print("未知错误")
 
-def format_flux(flux: float):
-    return flux / 1024**3
 
-def format_time(time: int):
-    h = time / 60**2
-    m = (time % 60**2) / 60
-    return [h, m]
+def logout():
+    srun_portal_params = {
+        'callback': 'jQuery112407038589071100492_'+str(int(time.time()*1000)),
+        'action': 'logout',
+        'username': username,
+        #'password': '{MD5}'+hmd5,
+        'ac_id': ac_id,
+        'ip': ip,
+        #'chksum': chksum,
+        #'info': i,
+        #'n': n,
+        #'type': type,
+        #'os': 'windows+10',
+        #'name': 'windows',
+        #'double_stack': '0',
+        '_': int(time.time()*1000)
+    }
+    srun_portal_res = requests.get(
+        srun_portal_api, params=srun_portal_params, headers=header)
+    if DEBUG_MODE:
+        if SHOW_SRUN_PORTAL_INFO:
+            print(srun_portal_params)
+            print(srun_portal_res.text)
+    if (re.search('"error":"ok"', srun_portal_res.text)):
+        print("注销成功")
+    elif (re.search('"error":"login_error"', srun_portal_res.text)):
+        print("已经是离线状态，当前设备IP地址：{}".format(ip))
+    else:
+        print("未知错误")
+
+def format_flux(flux):
+    res = int(flux)
+    res /= 1024
+    if res < 1024:
+        return str(round(res, 2)) + ' kb'
+    res /= 1024
+    if res < 1024:
+        return str(round(res, 2)) + ' Mb'
+    return str(round(res/1024, 2)) + ' Gb'
+
+def format_time(time):
+    h = int(int(time) / 60**2)
+    m = int((int(time) % 60**2) / 60)
+    s = int((int(time) % 60**2) % 60)
+    return "{} 小时 {} 分 {} 秒".format(h, m, s)
 
 def get_status():
     result = requests.get(rad_userinfo_api)
@@ -261,7 +306,7 @@ def get_status():
     else:
         info_list = result.text.split(',')
         if (not len(info_list) == 22):
-            print("未知网络错误")
+            print("错误 -> 无法获取正确的数据列表")
             return None
         username     = info_list[0]
         remain_flux  = info_list[6]
@@ -270,19 +315,54 @@ def get_status():
         remain_money = info_list[11]
         return [username, remain_flux, time_used, client_ip, remain_money]
 
+def help_menu():
+    print("用法：{} <command> <args>".format(argv[0].split('/')[-1]))
+    print("login <学号> <密码>   - 登录")
+    print("logout <学号> <密码>  - 注销")
+    print("info                - 查看在线状态")
+
 if __name__ == '__main__':
     global username, password
     global DEBUG_MODE, SHOW_IP, SHOW_TOKEN, SHOW_SRUN_PORTAL_INFO, SHOW_USER_INFO
     DEBUG_MODE              = True
-    SHOW_IP                 = False
-    SHOW_TOKEN              = False
-    SHOW_SRUN_PORTAL_INFO   = False
-    SHOW_USER_INFO          = False
+    SHOW_IP                 = True
+    SHOW_TOKEN              = True
+    SHOW_SRUN_PORTAL_INFO   = True
+    SHOW_USER_INFO          = True
 
-    username="2108570020058"
-    password="snipexl1997"
-    
-    init_work()
-    login()
-    
-    userinfo = get_status()
+    from sys import argv
+
+    if len(argv) == 1:
+        help_menu()
+
+    elif len(argv) == 2:
+        if argv[1] == 'info':
+            userinfo = get_status()
+            try:
+                print("用户名：{}".format(userinfo[0]))
+                print("剩余流量：{}".format(format_flux(userinfo[1])))
+                print("已用时长：{}".format(format_time(userinfo[2])))
+                print("设备IP地址：{}".format(userinfo[3]))
+                print("剩余金额：{}".format(userinfo[4]))
+            except:
+                pass
+
+        else:
+            help_menu()
+
+    elif len(argv) == 4:
+        username = argv[2]
+        password = argv[3]
+        try:
+            init_work()
+        except:
+            print("请检查账号和密码的格式是否有误")
+
+        if argv[1] == 'login':
+            login()
+
+        elif argv[1] == 'logout':
+            logout()
+
+    else:
+        help_menu()
