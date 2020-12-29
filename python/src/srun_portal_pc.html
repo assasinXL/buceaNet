@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="网络认证系统">
+    <title>网络认证系统</title>
+    <link type="images/x-icon" rel="shortcut icon" href="./static/themes/pro/images/favicon.ico?v=2.00.20201030">
+    <link rel="stylesheet" href="./static/themes/pro/lib/material/material.min.css?v=2.00.20201030">
+    <link rel="stylesheet" href="./static/themes/pro/lib/ionicons/ionicons.min.css?v=2.00.20201030">
+    <link rel="stylesheet" href="./static/themes/pro/css/components.css?v=2.00.20201030">
+    <link rel="stylesheet" href="./static/themes/pro/css/main.css?v=2.00.20201030">
+    <link rel="stylesheet" href="./static/themes/pro/css/custom.css?v=2.00.20201030">
+    <!--[if lt IE 8]>
+	<script src="./static/themes/ie6/lib/patch/ie6.js?v=2.00.20201030"></script>
+	<![endif]-->
+    <!--[if lt IE 9]>
+	<link rel="stylesheet" href="./static/themes/pro/css/patch.css?v=2.00.20201030">
+	<script src="./static/themes/pro/lib/patch/respond.min.js?v=2.00.20201030"></script>
+    <script src="./static/themes/pro/lib/patch/rem.min.js?v=2.00.20201030"></script>
+	<script src="./static/themes/pro/lib/patch/html5shiv-printshiv.min.js?v=2.00.20201030"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <main id="app">
+
+        <header class="header" ref="header">
+            <img src="./static/themes/pro/images/logo/logo.png?v=2.00.20201030" class="logo" alt="logo">
+        </header>
+
+        <section class="section" ref="section">
+
+            <div class="panel panel-login">
+
+                <div class="panel-row title-container">
+                    <h3 class="title">网络认证系统</h3>
+                    <h5 class="subtitle">新增用户账号为工号或学号，初始密码为身份证后八位；老用户账号密码不变！</h5>
+                </div>
+
+                <div class="panel-row">
+                    <i class="material-icons input-icon">person</i>
+                    <label class="input-label" for="username">账号</label>
+                    <input type="text" id="username" class="input-box" placeholder="请输入账号">
+
+
+                </div>
+
+                <div class="panel-row">
+                    <i class="material-icons input-icon">lock</i>
+                    <label class="input-label" for="password">密码</label>
+                    <input type="password" id="password" class="input-box" placeholder="请输入密码">
+                </div>
+
+                <div class="panel-row">
+
+                    <div class="remember">
+                        <input type="checkbox" id="remember" class="input-remember">
+                        <label for="remember" class="label-remember">记住密码</label>
+                    </div>
+
+                    <div class="forget" id="forget">
+                        <span>忘记密码</span>
+                    </div>
+                </div>
+
+                <div class="panel-row login-addmode">
+                </div>
+                <div class="panel-row">
+                    <span class="btn-pay pc-pay" id="btn-pay">充值缴费</span>
+                </div>
+
+                <div class="panel-row">
+                    <button type="button" class="btn-login" id="login-account">登录</button>
+
+                </div>
+            </div>
+
+            <div class="panel panel-notice" id="notice-container">
+                <div class="panel-row title-container">
+                    <h3 class="title" id="notice-title"></h3>
+                </div>
+                <div class="content" id="notice-content"></div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p class="copyright">©2020 北京建筑大学网络信息管理服务中心</p>
+
+            <select id="change-lang" class="change-lang" value="">
+                <option class="option" value="zh-CN">中文 (简体)</option>
+                <option class="option" value="en-US">English</option>
+            </select>
+        </footer>
+    </main>
+
+    <script>
+        var CONFIG = {
+            page: 'account',
+            ip: "10.50.10.158",
+            nas: "",
+            mac: "",
+            url: "",
+            lang: "zh-CN" || 'zh-CN',
+            isIPV6: false,
+            portal: { "AuthIP": "10.1.1.131", "AuthIP6": "", "ServiceIP": "http://10.1.1.131:8800", "DoubleStackPC": false, "DoubleStackMobile": false, "AuthMode": false, "CloseLogout": false, "MacAuth": false, "RedirectUrl": true, "OtherPCStack": "IPV4", "OtherMobileStack": "IPV4", "MsgApi": "new", "PublicSuccessPages": false, "TrafficCarry": 1024, "UserAgreeSwitch": false },
+            notice: "one",
+            priceList: { "Prices": "5,10,20,50,100", "Default": "0.01", "BalanceWarning": "5" }
+        };
+    </script>
+    <script src="./static/themes/pro/lib/all.min.js?v=20180302?v=2.00.20201030"></script>
+    <script src="./static/themes/pro/lib/patch/patch.es6.js?v=2.00.20201030"></script>
+    <script src="./static/themes/pro/js/creater.js?v=2.00.20201030"></script>
+    <script src="./static/themes/pro/js/lang.js?v=2.00.20201030"></script>
+    <script src="./static/themes/pro/js/Utils.js?v=2.00.20201030"></script>
+    <script src="./static/themes/pro/js/Portal.js?v=2.00.20201030"></script>
+    <script src="./static/themes/pro/js/main.js?v=2.00.20201030"></script>
+    <script>
+        if (Portal.mobile) Portal.redirect('/srun_portal_phone');
+    </script>
+</body>
+
+</html>
