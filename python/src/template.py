@@ -147,8 +147,8 @@ def init_getip():
 	global ip
 	init_res=requests.get(init_url,headers=header)
 	print("初始化获取ip")
-	ip='0.0.0.0'
-	#ip=re.search('id="user_ip" value="(.*?)"',init_res.text).group(1)
+	# ip='0.0.0.0'
+	ip=re.search('ip(\s*):(\s*)\"(.*)\"',init_res.text).group(3)
 	print("ip:"+ip)
 def get_token():
 	print("获取token")
