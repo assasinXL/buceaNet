@@ -1,0 +1,9 @@
+c:\Users\CYM\Desktop\buceaNet\rust\target\rls\debug\deps\socket2-215c6cd5a3cfcb02.rmeta: C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\socket2-0.3.19\src\lib.rs C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\socket2-0.3.19\src\sockaddr.rs C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\socket2-0.3.19\src\socket.rs C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\socket2-0.3.19\src\utils.rs C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\socket2-0.3.19\src\sys\windows.rs
+
+c:\Users\CYM\Desktop\buceaNet\rust\target\rls\debug\deps\socket2-215c6cd5a3cfcb02.d: C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\socket2-0.3.19\src\lib.rs C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\socket2-0.3.19\src\sockaddr.rs C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\socket2-0.3.19\src\socket.rs C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\socket2-0.3.19\src\utils.rs C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\socket2-0.3.19\src\sys\windows.rs
+
+C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\socket2-0.3.19\src\lib.rs:
+C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\socket2-0.3.19\src\sockaddr.rs:
+C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\socket2-0.3.19\src\socket.rs:
+C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\socket2-0.3.19\src\utils.rs:
+C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\socket2-0.3.19\src\sys\windows.rs:

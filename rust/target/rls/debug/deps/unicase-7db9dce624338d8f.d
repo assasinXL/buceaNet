@@ -1,0 +1,10 @@
+c:\Users\CYM\Desktop\buceaNet\rust\target\rls\debug\deps\unicase-7db9dce624338d8f.rmeta: C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\unicase-2.6.0\src\lib.rs C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\unicase-2.6.0\src\ascii.rs C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\unicase-2.6.0\src\unicode\mod.rs C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\unicase-2.6.0\src\unicode\map.rs
+
+c:\Users\CYM\Desktop\buceaNet\rust\target\rls\debug\deps\libunicase-7db9dce624338d8f.rlib: C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\unicase-2.6.0\src\lib.rs C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\unicase-2.6.0\src\ascii.rs C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\unicase-2.6.0\src\unicode\mod.rs C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\unicase-2.6.0\src\unicode\map.rs
+
+c:\Users\CYM\Desktop\buceaNet\rust\target\rls\debug\deps\unicase-7db9dce624338d8f.d: C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\unicase-2.6.0\src\lib.rs C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\unicase-2.6.0\src\ascii.rs C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\unicase-2.6.0\src\unicode\mod.rs C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\unicase-2.6.0\src\unicode\map.rs
+
+C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\unicase-2.6.0\src\lib.rs:
+C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\unicase-2.6.0\src\ascii.rs:
+C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\unicase-2.6.0\src\unicode\mod.rs:
+C:\Users\CYM\scoop\persist\rustup\.cargo\registry\src\github.com-1ecc6299db9ec823\unicase-2.6.0\src\unicode\map.rs:
