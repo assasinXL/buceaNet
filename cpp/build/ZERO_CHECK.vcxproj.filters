@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\yyzyu\Desktop\buceaNet\cpp\build\CMakeFiles\a4bc516429b106e949941aaba7b127d2\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{C6B50BE6-ACF1-384F-9DCD-E172C380D20E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
