@@ -1,3 +1,4 @@
+#coding=utf-8 BOM
 
 _PADCHAR = "="
 _ALPHA = "LVoJPiCN2R8G90yg+hmFHuacZ1OWMnrsSTXkYpUq/3dlbfKwv6xztjI7DeBE45QA"
@@ -174,7 +175,7 @@ def init_getip():
     init_res = requests.get(init_url, headers=header)
     if DEBUG_MODE:
         if SHOW_IP:
-            print("初始化获取ip")
+            print("initialing ip")
     ip = re.search('ip(\s*):(\s*)"(.*)"', init_res.text).group(3)
     if DEBUG_MODE:
         if SHOW_IP:
@@ -183,7 +184,7 @@ def init_getip():
 def get_token():
     if DEBUG_MODE:
         if SHOW_TOKEN:
-            print("获取token")
+            print("Obtianing token")
     global token
     get_challenge_params = {
         "callback": "jQuery112404953340710317169_" + str(int(time.time() * 1000)),
@@ -198,7 +199,7 @@ def get_token():
     if DEBUG_MODE:
         if SHOW_TOKEN:
             print(get_challenge_res.text)
-            print("token为:" + token)
+            print("token is:" + token)
 
 def encode():
     global i, hmd5, chksum
@@ -207,7 +208,7 @@ def encode():
     hmd5 = get_md5(password, token)
     chksum = get_sha1(get_chksum())
     if DEBUG_MODE:
-        print("所有加密工作已完成")
+        print("All encode work done")
 
 def init_work():
     init_getip()
@@ -237,15 +238,15 @@ def login():
             print(srun_portal_params)
             print(srun_portal_res.text)
     if (re.search("E0000", srun_portal_res.text)):
-        print("登录成功")
+        print("Login success")
     if (re.search("E2531", srun_portal_res.text)):
-        print("用户不存在")
+        print("user is not exist")
     if (re.search("E2553", srun_portal_res.text)):
-        print("账号或密码错误")
+        print("incorrect username or password")
     elif (re.search("ip_already_online_error", srun_portal_res.text)):
-        print("已经是在线状态，当前设备IP地址：{}".format(ip))
+        print("already online, client_ip is: {}".format(ip))
     else:
-        print("未知错误")
+        print("Unknow error")
 
 
 def logout():
@@ -272,11 +273,11 @@ def logout():
             print(srun_portal_params)
             print(srun_portal_res.text)
     if (re.search('"error":"ok"', srun_portal_res.text)):
-        print("注销成功")
+        print("Logout success")
     elif (re.search('"error":"login_error"', srun_portal_res.text)):
-        print("已经是离线状态，当前设备IP地址：{}".format(ip))
+        print("already offline, client_ip is: {}".format(ip))
     else:
-        print("未知错误")
+        print("Unknow error")
 
 def format_flux(flux):
     res = int(flux)
@@ -292,7 +293,7 @@ def format_time(time):
     h = int(int(time) / 60**2)
     m = int((int(time) % 60**2) / 60)
     s = int((int(time) % 60**2) % 60)
-    return "{} 小时 {} 分 {} 秒".format(h, m, s)
+    return "{} hour {} minute {} second".format(h, m, s)
 
 def get_status():
     result = requests.get(rad_userinfo_api)
@@ -301,12 +302,12 @@ def get_status():
             print(result)
             print(result.text)
     if (re.search("not_online_error", result.text)):
-        print("当前为离线状态，请登录")
+        print("offline now, please login")
         return None
     else:
         info_list = result.text.split(',')
         if (not len(info_list) == 22):
-            print("错误 -> 无法获取正确的数据列表")
+            print("Error -> Can not get the correct data list")
             return None
         username     = info_list[0]
         remain_flux  = info_list[6]
@@ -316,15 +317,15 @@ def get_status():
         return [username, remain_flux, time_used, client_ip, remain_money]
 
 def help_menu():
-    print("用法：{} <command> <args>".format(argv[0].split('/')[-1]))
-    print("login <学号> <密码>   - 登录")
-    print("logout <学号> <密码>  - 注销")
-    print("info                - 查看在线状态")
+    print("Usage：{} <command> <args>".format(argv[0].split('/')[-1]))
+    print("login <username> <password>   - Login")
+    print("logout <username> <password>  - Logout")
+    print("info                          - Get online info")
 
 if __name__ == '__main__':
     global username, password
     global DEBUG_MODE, SHOW_IP, SHOW_TOKEN, SHOW_SRUN_PORTAL_INFO, SHOW_USER_INFO
-    DEBUG_MODE              = True
+    DEBUG_MODE              = False
     SHOW_IP                 = True
     SHOW_TOKEN              = True
     SHOW_SRUN_PORTAL_INFO   = True
@@ -339,11 +340,11 @@ if __name__ == '__main__':
         if argv[1] == 'info':
             userinfo = get_status()
             try:
-                print("用户名：{}".format(userinfo[0]))
-                print("剩余流量：{}".format(format_flux(userinfo[1])))
-                print("已用时长：{}".format(format_time(userinfo[2])))
-                print("设备IP地址：{}".format(userinfo[3]))
-                print("剩余金额：{}".format(userinfo[4]))
+                print("username: {}".format(userinfo[0]))
+                print("remain_flux: {}".format(format_flux(userinfo[1])))
+                print("used_time: {}".format(format_time(userinfo[2])))
+                print("client_ip: {}".format(userinfo[3]))
+                print("remain_money: {}".format(userinfo[4]))
             except:
                 pass
 
@@ -356,7 +357,7 @@ if __name__ == '__main__':
         try:
             init_work()
         except:
-            print("请检查账号和密码的格式是否有误")
+            print("Please check the constrction of your account info")
 
         if argv[1] == 'login':
             login()
