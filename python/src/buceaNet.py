@@ -198,6 +198,9 @@ def get_token():
     token = re.search('"challenge":"(.*?)"', get_challenge_res.text).group(1)
     if DEBUG_MODE:
         if SHOW_TOKEN:
+            print("Token Info: ")
+            print(get_challenge_res.headers)
+            print(get_challenge_res.status_code)
             print(get_challenge_res.text)
             print("token is:" + token)
 
@@ -217,7 +220,7 @@ def init_work():
 
 def login():
     srun_portal_params={
-    'callback': 'jQuery11240645308969735664_'+str(int(time.time()*1000)),
+    'callback': 'jQuery112405110966683943214_'+str(int(time.time()*1000)),
     'action':'login',
     'username':username,
     'password':'{MD5}'+hmd5,
@@ -227,21 +230,28 @@ def login():
     'info':i,
     'n':n,
     'type':type,
-    'os':'windows+10',
-    'name':'windows',
+    'os':'Windows+10',
+    'name':'Windows',
     'double_stack':'0',
     '_':int(time.time()*1000)
     }
     srun_portal_res=requests.get(srun_portal_api,params=srun_portal_params,headers=header)
     if DEBUG_MODE:
         if SHOW_SRUN_PORTAL_INFO:
+            print("=========Login Params: ")
             print(srun_portal_params)
+            print("=========Login Headers: ")
+            print(srun_portal_res.headers)
+            print("=========Login Status Code: ")
+            print(srun_portal_res.status_code)
+            print("=========Login Info: ")
             print(srun_portal_res.text)
+            print(srun_portal_res.url)
     if (re.search("E0000", srun_portal_res.text)):
         print("Login success")
-    if (re.search("E2531", srun_portal_res.text)):
+    elif (re.search("E2531", srun_portal_res.text)):
         print("user is not exist")
-    if (re.search("E2553", srun_portal_res.text)):
+    elif (re.search("E2553", srun_portal_res.text)):
         print("incorrect username or password")
     elif (re.search("ip_already_online_error", srun_portal_res.text)):
         print("already online, client_ip is: {}".format(ip))
@@ -251,26 +261,32 @@ def login():
 
 def logout():
     srun_portal_params = {
-        'callback': 'jQuery112407038589071100492_'+str(int(time.time()*1000)),
+        'callback': 'jQuery112406312632066882595_'+str(int(time.time()*1000)),
         'action': 'logout',
         'username': username,
-        #'password': '{MD5}'+hmd5,
+        'password': '{MD5}'+hmd5,
         'ac_id': ac_id,
         'ip': ip,
-        #'chksum': chksum,
-        #'info': i,
-        #'n': n,
-        #'type': type,
-        #'os': 'windows+10',
-        #'name': 'windows',
-        #'double_stack': '0',
+        'chksum': chksum,
+        'info': i,
+        'n': n,
+        'type': type,
+        'os': 'windows+10',
+        'name': 'windows',
+        'double_stack': '0',
         '_': int(time.time()*1000)
     }
     srun_portal_res = requests.get(
         srun_portal_api, params=srun_portal_params, headers=header)
     if DEBUG_MODE:
         if SHOW_SRUN_PORTAL_INFO:
+            print("=========Logout Params: ")
             print(srun_portal_params)
+            print("=========Logout Headers: ")
+            print(srun_portal_res.headers)
+            print("=========Logout Status Code: ")
+            print(srun_portal_res.status_code)
+            print("=========Logout Info: ")
             print(srun_portal_res.text)
     if (re.search('"error":"ok"', srun_portal_res.text)):
         print("Logout success")
@@ -300,6 +316,7 @@ def get_status():
     if DEBUG_MODE:
         if SHOW_USER_INFO:
             print(result)
+            print(result.status_code)
             print(result.text)
     if (re.search("not_online_error", result.text)):
         print("offline now, please login")
@@ -325,7 +342,7 @@ def help_menu():
 if __name__ == '__main__':
     global username, password
     global DEBUG_MODE, SHOW_IP, SHOW_TOKEN, SHOW_SRUN_PORTAL_INFO, SHOW_USER_INFO
-    DEBUG_MODE              = False
+    DEBUG_MODE              = True
     SHOW_IP                 = True
     SHOW_TOKEN              = True
     SHOW_SRUN_PORTAL_INFO   = True
@@ -354,6 +371,7 @@ if __name__ == '__main__':
     elif len(argv) == 4:
         username = argv[2]
         password = argv[3]
+
         try:
             init_work()
         except:
