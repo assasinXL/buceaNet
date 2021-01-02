@@ -275,8 +275,6 @@ int main(int argc, const char **argv) {
   username = "2108570020058";
   password = "snipexl1997";
 
-  init_work();
-  login();
   
   return 0;
 }

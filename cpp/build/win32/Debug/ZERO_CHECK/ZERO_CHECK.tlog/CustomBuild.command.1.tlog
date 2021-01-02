@@ -1,0 +1,10 @@
+^C:\USERS\YYZYU\DESKTOP\BUCEANET\CPP\BUILD\CMAKEFILES\A4BC516429B106E949941AABA7B127D2\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/yyzyu/Desktop/buceaNet/cpp -BC:/Users/yyzyu/Desktop/buceaNet/cpp/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/yyzyu/Desktop/buceaNet/cpp/build/buceaNet.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
