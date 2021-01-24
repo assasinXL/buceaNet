@@ -339,6 +339,7 @@ def help_menu():
     print("logout <username> <password>  - Logout")
     print("info                          - Get online info")
 
+
 if __name__ == '__main__':
     global username, password
     global DEBUG_MODE, SHOW_IP, SHOW_TOKEN, SHOW_SRUN_PORTAL_INFO, SHOW_USER_INFO
@@ -347,12 +348,12 @@ if __name__ == '__main__':
     SHOW_TOKEN              = True
     SHOW_SRUN_PORTAL_INFO   = True
     SHOW_USER_INFO          = True
-
+ 
     from sys import argv
-
+ 
     if len(argv) == 1:
         help_menu()
-
+ 
     elif len(argv) == 2:
         if argv[1] == 'info':
             userinfo = get_status()
@@ -364,24 +365,24 @@ if __name__ == '__main__':
                 print("remain_money: {}".format(userinfo[4]))
             except:
                 pass
-
+ 
         else:
             help_menu()
-
+ 
     elif len(argv) == 4:
         username = argv[2]
         password = argv[3]
-
+ 
         try:
             init_work()
         except:
             print("Please check the constrction of your account info")
-
+ 
         if argv[1] == 'login':
             login()
-
+ 
         elif argv[1] == 'logout':
             logout()
-
+ 
     else:
         help_menu()

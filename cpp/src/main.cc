@@ -12,9 +12,18 @@
 #include "md5.h"
 #include "sha1.h"
 
-#define __DEBUG
+// #define __DEBUG
 
 using namespace std;
+
+const string force(string const& msg) {
+  vector<uint8_t> ret;
+  for (auto iter : msg)
+    ret.push_back(static_cast<uint8_t>(static_cast<uint32_t>(iter)));
+  string res;
+  res.assign(ret.begin(), ret.end());
+  return res;
+}
 
 const int ordat(string const &msg, size_t idx) { // Test OK
   if (msg.size() > idx)
@@ -45,16 +54,12 @@ const string lencode(vector<uint32_t> &msg, bool key) { // Test Error <---------
   string result;
   result.resize(l);
   for (uint32_t i = 0; i < l; i++){
-    string str;
-    str.push_back(static_cast<char>(msg[i] & 0xFF));
-    str.push_back(static_cast<char>((msg[i] >> 8 & 0xFF)));
-    str.push_back(static_cast<char>((msg[i] >> 16 & 0xFF)));
-    str.push_back(static_cast<char>((msg[i] >> 24 & 0xFF)));
-    result.append(str);
+    result.push_back(static_cast<char>(msg[i] & 0xFF));
+    result.push_back(static_cast<char>((msg[i] >> 8 & 0xFF)));
+    result.push_back(static_cast<char>((msg[i] >> 16 & 0xFF)));
+    result.push_back(static_cast<char>((msg[i] >> 24 & 0xFF)));
   }
-  if (key)
-    return result.substr(0, ll);
-  return result;
+  return (key) ? result.substr(0, ll) : result;
 }
 
 const string get_xencode(string const &msg, string const &key) {    // Test OK
@@ -219,7 +224,7 @@ void encode() {
   cout << "i: " << i << endl;
   cout << "i_param: " << i_param << endl; // <------ Wrong at here, i is incorrect!
 #endif
-  i = "{SRBX1}" + get_base64(i_param);
+  i = "{SRBX1}" + get_base64(force(i_param));
   hmd5 = get_md5(password, token);
   chksum = get_sha1(get_chksum());
 #ifdef __DEBUG
@@ -275,6 +280,9 @@ int main(int argc, const char **argv) {
   username = "2108570020058";
   password = "snipexl1997";
 
-  
+  cout << get_base64(username) << endl;
+  cout << force(get_xencode(username, password)) << endl;
+  cout << get_base64(force(get_xencode(username, password))) << endl;
+
   return 0;
 }
