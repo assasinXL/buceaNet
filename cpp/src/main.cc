@@ -277,8 +277,8 @@ void login() {
 }
 
 int main(int argc, const char **argv) {
-  username = "2108570020058";
-  password = "snipexl1997";
+  username = "";
+  password = "";
 
   cout << get_base64(username) << endl;
   cout << force(get_xencode(username, password)) << endl;
